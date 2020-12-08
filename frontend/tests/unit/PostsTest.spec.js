@@ -100,7 +100,23 @@ describe('Posts', () => {
 
     const wrapper = mount(Posts, {router, store, localVue});
 
+    //This was already here
     it('1 == 1', function () {
         expect(true).toBe(true)
     });
+    
+    //Test that exactly as many posts are rendered as contained in testData variable
+    it('has as many posts as contained in testData', () =>{
+        const posts = wrapper.findAll('.post');
+        expect(posts.length).toEqual(testData.length);
+    });
+
+    //Test that if post has media property, image or video tags are rendered depending on media.type property, or if media property is absent nothing is rendered.
+
+    //Test that if post has media property, image or video tags are rendered depending on media.type property, or if media property is absent nothing is rendered.
+
 });
+
+
+
+
