@@ -2,6 +2,7 @@ import {mount, createLocalVue} from '@vue/test-utils'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import Posts from "../../src/components/Posts.vue";
+import moment from "moment";
 
 const localVue = createLocalVue();
 
@@ -104,16 +105,23 @@ describe('Posts', () => {
     it('1 == 1', function () {
         expect(true).toBe(true)
     });
-    
+
     //Test that exactly as many posts are rendered as contained in testData variable
-    it('has as many posts as contained in testData', () =>{
+    it('has as many posts as contained in testData', () => {
         const posts = wrapper.findAll('.post');
         expect(posts.length).toEqual(testData.length);
     });
 
-    //Test that if post has media property, image or video tags are rendered depending on media.type property, or if media property is absent nothing is rendered.
-
     //Test that post create time is displayed in correct format: Saturday, December 5, 2020 1:53 PM
+    it('post create time is displayed in correct format', () => {
+        for (let i = 0; i < wrapper.length; i++) {
+            const actualDate = wrapper[i].createTime;
+            const expectedDate = moment(actualDate).format('LLLL');
+            expect(actualDate).toEqual(expectedDate);
+        }
+    });
+
+    //Test that if post has media property, image or video tags are rendered depending on media.type property, or if media property is absent nothing is rendered.
 
 });
 
