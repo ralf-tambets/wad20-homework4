@@ -6,7 +6,7 @@ const jwt = {
     createAccessToken: (payload) => {
         return JsonWebToken.sign(payload, SECRET, {
             algorithm: "HS256",
-            expiresIn: 600 //10 minutes
+            expiresIn: 6000 //10 minutes
         });
     },
     verifyAccessToken: (token) => {
