@@ -121,10 +121,19 @@ describe('Posts', () => {
         }
     });
 
-    //Test that if post has media property, image or video tags are rendered depending on media.type property, or if media property is absent nothing is rendered.
+    // Test that if post has media property, image or video tags are rendered depending on media.type property,
+    // and if media property is absent nothing is rendered.
+    it('tags are rendered only if post has media property', () => {
 
+        //const imageTags = testData.filter(item.media.type => item.media.type.image)
+        const imageTags = testData.filter(item => (item.media !== null && item.media.type === 'image'))
+        const actualImageTags = wrapper.findAll('.post .post-image img');
+        expect(imageTags.length).toEqual(actualImageTags.length);
+
+        //const videoTags = testData.filter(item.media.type => item.media.type.video)
+        const videoTags = testData.filter(item => (item.media !== null && item.media.type === 'video'))
+        const actualVideoTags = wrapper.findAll('.post .post-image video');
+        expect(videoTags.length).toEqual(actualVideoTags.length);
+
+    });
 });
-
-
-
-
